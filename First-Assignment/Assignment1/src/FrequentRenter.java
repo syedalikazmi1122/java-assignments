@@ -1,8 +1,8 @@
 public  class FrequentRenter extends Renter{
     
         FrequentRenter(int Renter_id, String Renter_name, String Renter_Email, String Renter_contactnumber,
-                String Renter_address) {
-            super(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address);
+                        String Renter_address, String RenterType) {
+                super(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address, RenterType);
         }
 
         public void viewfeatures() {

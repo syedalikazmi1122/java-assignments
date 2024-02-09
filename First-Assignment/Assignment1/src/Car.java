@@ -8,10 +8,12 @@ public class Car {
     private boolean insurrable;
     private double RentalFee;
     private double base_Ammount = 0;
-    private double insurranceammount = 0;
+    private double insurranceammount ;
+    private double costofunitrent;
     private double luxurycartax;
     private String PlateNumber;
     protected int numberofcars;
+
     public Car(int Car_id, String CarType, String Brand, String Model, Boolean Rentalstatus, String PlateNumber,
             boolean insurrable, double base_Ammount) {
         this.Car_id = Car_id;
@@ -23,9 +25,15 @@ public class Car {
         this.insurrable = insurrable;
         this.base_Ammount = base_Ammount;
         luxurycartax = 10000;
+        insurranceammount=10000;
+        costofunitrent = 10;
     }
 
     // The getters and setters
+    protected String getcar_type() {
+        return CarType;
+    }
+
     protected int getCar_id() {
         return Car_id;
     }
@@ -86,19 +94,25 @@ public class Car {
         return base_Ammount;
     }
 
-    protected double calculaterentalfee(float distancetravelled, double costofunitrent) {
-        if (CarType == "Compactcar" || CarType == "SUVcar") {
-            RentalFee = (distancetravelled * costofunitrent) + base_Ammount;
-        } else if (CarType == "Luxury") {
+    protected double calculaterentalfee(double distancetravelled, double base ,boolean insurrable) {
+     
+     
+        if (CarType.equals("Compact") || CarType.equals("SUV")) {
+            RentalFee = (distancetravelled * costofunitrent) + base;
+        } else if (CarType.equals("Luxury")) {
             RentalFee = base_Ammount + (distancetravelled * costofunitrent)
                     + luxurycartax;
         }
+       if(insurrable)
+       {
+        RentalFee=RentalFee-insurranceammount;
+       }
         return RentalFee;
 
     }
 
     public void getFeatures() {
         // TODO Auto-generated method stub
-        }
+    }
 
 }

@@ -38,30 +38,33 @@ public class RenterManagement {
 
         // Adding in the types
         if (RenterType.equals("RegularRenter")) {
-            addRegularRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address);
+            addRegularRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address, RenterType);
         } else if (RenterType.equals("FrequentRenter")) {
-            AddFrequentRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address);
+            AddFrequentRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address, RenterType);
         } else if (RenterType.equals("CorporateRenter")) {
-            addCorporateRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address);
+            addCorporateRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address, RenterType);
         }
     }
 
     private void AddFrequentRenter(int Renter_id, String Renter_name, String Renter_Email, String Renter_contactnumber,
-            String Renter_address) {
+            String Renter_address, String RenterType) {
         Frequentrenter
-                .add(new FrequentRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address));
+                .add(new FrequentRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address,
+                        RenterType));
     }
 
     private void addCorporateRenter(int Renter_id, String Renter_name, String Renter_Email, String Renter_contactnumber,
-            String Renter_address) {
+            String Renter_address, String RenterType) {
         CorporateRenters
-                .add(new CorporateRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address));
+                .add(new CorporateRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address,
+                        RenterType));
     }
 
     private void addRegularRenter(int Renter_id, String Renter_name, String Renter_Email, String Renter_contactnumber,
-            String Renter_address) {
+            String Renter_address, String RenterType) {
         RegularRenters
-                .add(new RegularRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address));
+                .add(new RegularRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address,
+                        RenterType));
         System.out.println("The renter is added");
     }
 
@@ -131,7 +134,23 @@ public class RenterManagement {
         }
     }
 
-    void RentCar( ){
-        
+    public Renter findRenterById(int renterId) {
+        for (RegularRenter regularRenter : RegularRenters) {
+            if (regularRenter.getRenter_id() == renterId) {
+                return regularRenter;
+            }
+        }
+        for (CorporateRenter corporateRenter : CorporateRenters) {
+            if (corporateRenter.getRenter_id() == renterId) {
+                return corporateRenter;
+            }
+        }
+        for (FrequentRenter frequentRenter : Frequentrenter) {
+            if (frequentRenter.getRenter_id() == renterId) {
+                return frequentRenter;
+            }
+        }
+        return null;
     }
+
 }

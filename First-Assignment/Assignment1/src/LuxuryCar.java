@@ -2,7 +2,7 @@ public class LuxuryCar extends Car{
     
    LuxuryCar(int  Car_id, String Brand, String Model, String PlateNumber) 
    {
-        super(Car_id, "Luxury", Brand, Model, false, PlateNumber, true, 50000 );
+        super(Car_id, "Luxurycar", Brand, Model, false, PlateNumber, true, 50000 );
     }
     
     public void getFeatures() {

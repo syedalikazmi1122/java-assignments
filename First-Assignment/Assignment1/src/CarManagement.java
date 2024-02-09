@@ -33,7 +33,6 @@ public class CarManagement {
                 return;
             }
         }
-
         if (cartype.equals("Compactcar")) {
             Compactcar newcar = new Compactcar(car_id, brand, model, plateNumber);
             compactCars.add(newcar);
@@ -104,5 +103,33 @@ public class CarManagement {
                 System.out.println("The plate number of the car is: " + luxuryCars.get(i).getPlateNumber());
             }
         }
+    }
+
+    // find a car function with cartype and rental status false.
+    public Car findCar(String Cartype) {
+        if (Cartype.equals("Compactcar")) {
+            for (int i = 0; i < compactCars.size(); i++) {
+                if (compactCars.get(i).getRentalstatus() == false) {
+                    compactCars.get(i).setRentalstatus(true);
+                    return compactCars.get(i);
+
+                }
+            }
+        } else if (Cartype.equals("SUVcar")) {
+            for (int i = 0; i < suvCars.size(); i++) {
+                if (suvCars.get(i).getRentalstatus() == false) {
+                    suvCars.get(i).setRentalstatus(true);
+                    return suvCars.get(i);
+                }
+            }
+        } else if (Cartype.equals("Luxurycar")) {
+            for (int i = 0; i < luxuryCars.size(); i++) {
+                if (luxuryCars.get(i).getRentalstatus() == false) {
+                    luxuryCars.get(i).setRentalstatus(true);
+                    return luxuryCars.get(i);
+                }
+            }
+        }
+        return null;
     }
 }

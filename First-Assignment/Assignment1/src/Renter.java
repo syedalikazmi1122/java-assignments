@@ -7,17 +7,19 @@ public class Renter {
     protected String Renter_contactnumber;
     protected String Renter_address;
     protected double TotalRentalFee;
-    protected ArrayList<Compactcar> RentedCompactCars;
-    protected ArrayList<LuxuryCar> RentedLuxuryCars;
-    protected ArrayList<SUVCars> RentedSUVCars;
+    protected String renterType;
+    protected ArrayList<Car> RentedCompactCars;
+    protected ArrayList<Car> RentedLuxuryCars;
+    protected ArrayList<Car> RentedSUVCars;
 
     public Renter(int Renter_id, String Renter_name, String Renter_Email, String Renter_contactnumber,
-            String Renter_address) {
+            String Renter_address,String rentertype) {
         this.Renter_id = Renter_id;
         this.Renter_name = Renter_name;
         this.Renter_Email = Renter_Email;
         this.Renter_contactnumber = Renter_contactnumber;
         this.Renter_address = Renter_address;
+        this.renterType=rentertype;
         RentedCompactCars = new ArrayList<>();
         RentedLuxuryCars = new ArrayList<>();
         RentedSUVCars = new ArrayList<>();
@@ -37,6 +39,11 @@ public class Renter {
 
     public void setRenter_name(String Renter_name) {
         this.Renter_name = Renter_name;
+    }
+   
+    public String getrentertype()
+    {
+        return renterType;
     }
 
     public String getRenter_Email() {
