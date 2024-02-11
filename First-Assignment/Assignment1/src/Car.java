@@ -1,5 +1,9 @@
+//syed ali kazmi 
+//22i-2472
+//se-b
+
 public class Car {
-    // basic data for the car
+	 // basic data for the car
     private int Car_id;
     private String Brand;
     private String Model;
@@ -8,12 +12,12 @@ public class Car {
     private boolean insurrable;
     private double RentalFee;
     private double base_Ammount = 0;
-    private double insurranceammount ;
+    private double insuranceamount ;
+    private double insurancepercentage;
     private double costofunitrent;
     private double luxurycartax;
+    private double damagecost;
     private String PlateNumber;
-    protected int numberofcars;
-
     public Car(int Car_id, String CarType, String Brand, String Model, Boolean Rentalstatus, String PlateNumber,
             boolean insurrable, double base_Ammount) {
         this.Car_id = Car_id;
@@ -25,8 +29,11 @@ public class Car {
         this.insurrable = insurrable;
         this.base_Ammount = base_Ammount;
         luxurycartax = 10000;
-        insurranceammount=10000;
+        insurancepercentage=.10;
+        insuranceamount=0;
         costofunitrent = 10;
+        damagecost =0;
+        
     }
 
     // The getters and setters
@@ -93,19 +100,33 @@ public class Car {
     protected double getbase_Ammount() {
         return base_Ammount;
     }
-
+    protected void setdamagecost(double d)
+    {
+    	damagecost = d;
+    }
+    protected double getdamagecost()
+    {
+    	return damagecost;
+    }
+  protected double getinsuranceamount()
+  {
+	  return insuranceamount;
+  }
+//  calculating the rent and insurance of the car rented
     protected double calculaterentalfee(double distancetravelled, double base ,boolean insurrable) {
      
-     
-        if (CarType.equals("Compact") || CarType.equals("SUV")) {
+    	this.insurrable = insurrable;
+        if (CarType.equals("Compactcar") || CarType.equals("SUVcar")) {
             RentalFee = (distancetravelled * costofunitrent) + base;
-        } else if (CarType.equals("Luxury")) {
+        } else if (CarType.equals("Luxurycar")) {
             RentalFee = base_Ammount + (distancetravelled * costofunitrent)
                     + luxurycartax;
         }
        if(insurrable)
        {
-        RentalFee=RentalFee-insurranceammount;
+    	   insuranceamount = insurancepercentage*RentalFee;
+          System.out.println("the insurance amount is "+insuranceamount);
+    	   RentalFee=RentalFee-(insurancepercentage*RentalFee);
        }
         return RentalFee;
 
@@ -114,5 +135,4 @@ public class Car {
     public void getFeatures() {
         // TODO Auto-generated method stub
     }
-
 }

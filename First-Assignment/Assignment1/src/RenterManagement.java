@@ -1,6 +1,11 @@
+
+
+//syed ali kazmi 
+//22i-2472
+//se-b
 import java.util.ArrayList;
 
-public class RenterManagement {
+public class RenterManagement implements management {
 
     private ArrayList<RegularRenter> RegularRenters;
     private ArrayList<CorporateRenter> CorporateRenters;
@@ -43,6 +48,8 @@ public class RenterManagement {
             AddFrequentRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address, RenterType);
         } else if (RenterType.equals("CorporateRenter")) {
             addCorporateRenter(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address, RenterType);
+        } else {
+            System.out.println("The type you entered is not valid please add the rented again");
         }
     }
 
@@ -69,13 +76,12 @@ public class RenterManagement {
     }
 
     // the function to Display the details of a Renter
-    void DisplayRenterDetails(int id) {
-        System.out.println("The size of RegularRenters is: " + RegularRenters.size());
-        System.out.println("The size of CorporateRenters is: " + CorporateRenters.size());
-        System.out.println("The size of Frequentrenter is: " + Frequentrenter.size());
 
+    public void Display(int id) {
+
+        System.out.println("-------------------------------------");
         for (int i = 0; i < RegularRenters.size(); i++) {
-            System.out.println("aaa");
+
             if (RegularRenters.get(i).getRenter_id() == id) {
                 System.out.println("The Renter id is: " + RegularRenters.get(i).getRenter_id());
                 System.out.println("The Renter name is: " + RegularRenters.get(i).getRenter_name());
@@ -86,8 +92,9 @@ public class RenterManagement {
                 return;
             }
         }
+        System.out.println("-------------------------------------");
         for (int i = 0; i < CorporateRenters.size(); i++) {
-            System.out.println("aaa");
+
             if (CorporateRenters.get(i).getRenter_id() == id) {
                 System.out.println("The Renter id is: " + CorporateRenters.get(i).getRenter_id());
                 System.out.println("The Renter name is: " + CorporateRenters.get(i).getRenter_name());
@@ -109,7 +116,8 @@ public class RenterManagement {
                 return;
             }
         }
-        // System.out.println("Renter with this id does not exist");
+        System.out.println("Renter with this id does not exist");
+        System.out.println("-------------------------------------");
     }
 
     // function to remove a Renter
@@ -117,23 +125,27 @@ public class RenterManagement {
         for (int i = 0; i < RegularRenters.size(); i++) {
             if (RegularRenters.get(i).getRenter_id() == id) {
                 RegularRenters.remove(i);
+                System.out.println("the renter has been removed");
                 return;
             }
         }
         for (int i = 0; i < CorporateRenters.size(); i++) {
             if (CorporateRenters.get(i).getRenter_id() == id) {
                 CorporateRenters.remove(i);
+                System.out.println("the renter has been removed");
                 return;
             }
         }
         for (int i = 0; i < Frequentrenter.size(); i++) {
             if (Frequentrenter.get(i).getRenter_id() == id) {
                 Frequentrenter.remove(i);
+                System.out.println("the renter has been removed");
                 return;
             }
         }
     }
 
+    // to find renter in the list by its id
     public Renter findRenterById(int renterId) {
         for (RegularRenter regularRenter : RegularRenters) {
             if (regularRenter.getRenter_id() == renterId) {
@@ -151,6 +163,12 @@ public class RenterManagement {
             }
         }
         return null;
+    }
+
+    @Override
+    public void Display() {
+        // TODO Auto-generated method stub
+
     }
 
 }

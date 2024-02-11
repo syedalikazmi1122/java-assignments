@@ -1,7 +1,12 @@
-public class CorporateRenter extends Renter{
+
+
+//syed ali kazmi 
+//22i-2472
+//se-b
+public class CorporateRenter extends Renter {
     CorporateRenter(int Renter_id, String Renter_name, String Renter_Email, String Renter_contactnumber,
-            String Renter_address,String RenterType) {
-        super(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address,RenterType);
+            String Renter_address, String RenterType) {
+        super(Renter_id, Renter_name, Renter_Email, Renter_contactnumber, Renter_address, RenterType);
     }
 
     public void viewfeatures() {

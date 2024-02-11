@@ -1,3 +1,7 @@
+
+//syed ali kazmi 
+//22i-2472
+//se-b
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,6 +28,7 @@ public class CRMS {
                 int option = scanner.nextInt();
 
                 switch (option) {
+                    // for car management
                     case 1: {
                         System.out.println("Please select an option:");
                         System.out.println("1. Add car");
@@ -33,21 +38,23 @@ public class CRMS {
                         switch (carOption) {
                             case 1: {
                                 System.out.println("Enter car details:");
-                                System.out.println("Car type:");
+                                System.out.println("Car type:(Compactcar/Luxurycar/SUVcar)");
                                 String carType = scanner.next();
                                 System.out.println("Car brand:");
                                 String carbrand = scanner.next();
                                 System.out.println("Car number:");
                                 String carNumber = scanner.next();
-                                System.out.println("Car model:");
+                                System.out.println("Car model number for e.g 2022 :");
                                 String model = scanner.next();
+
                                 System.out.println("Car id:");
                                 int car_id = scanner.nextInt();
                                 carmanagement.addCar(carType, model, carbrand, carNumber, car_id);
+
                                 break;
                             }
                             case 2: {
-                                carmanagement.DisplayavailableCars();
+                                carmanagement.Display();
                             }
                                 break;
                             case 3: {
@@ -62,13 +69,14 @@ public class CRMS {
                         }
                     }
                         break;
+                    // for renter management
                     case 2: {
                         System.out.println("Please select an option:");
                         System.out.println("1. Add renter");
                         System.out.println("2. Display renter details");
-                        System.out.println("3. Remove renter");
+                        System.out.println("3. Remove a renter");
                         System.out.println("4. Rent a car");
-                        System.out.println("5. Remove a car from rentor ");
+                        System.out.println("5. Remove a car from rentor and remove the renter");
                         System.out.println("6. print the rentors who have taken cars details");
                         System.out.println("7. Exit");
                         int renterOption = scanner.nextInt();
@@ -87,24 +95,27 @@ public class CRMS {
                                 String renterContactNumber = scanner.next();
                                 System.out.println("Renter type:(FrequentRenter/CorporateRenter/RegularRenter)");
                                 String renterType = scanner.next();
+
                                 System.out.println("The Renter Type is " + renterType);
 
                                 rentermanagement.addRenter(renterId, renterName, renterEmail, renterContactNumber,
                                         renterAddress,
                                         renterType);
+                                System.out.println("-------------------------------------");
                             }
                                 break;
                             case 2: {
                                 System.out.println("Enter renter id:");
                                 int renterId = scanner.nextInt();
-                                System.out.println("The Renter id is: " + renterId);
-                                rentermanagement.DisplayRenterDetails(renterId);
+                                rentermanagement.Display(renterId);
+                                System.out.println("-------------------------------------");
                             }
                                 break;
                             case 3: {
                                 System.out.println("Enter renter id to remove:");
                                 int renterIdToRemove = scanner.nextInt();
                                 rentermanagement.removeRenter(renterIdToRemove);
+                                System.out.println("-------------------------------------");
                             }
                                 break;
                             case 4: {
@@ -115,9 +126,9 @@ public class CRMS {
                                 Car car = carmanagement.findCar(cartype);
                                 Renter renter = rentermanagement.findRenterById(id);
                                 Renter temp = renttransaction.RentCar(renter, car);
-                                System.out.print(temp.getRenter_Email());
-                                System.out.println(temp.RentedCompactCars.get(0).getCar_id());
+
                                 Renters.add(temp);
+                                System.out.println("-------------------------------------");
                             }
                                 break;
                             case 5: {
@@ -131,30 +142,38 @@ public class CRMS {
                                 if (Renters.contains(renter)) {
                                     renttransaction.ReturnCar(renter, carnumber, cartype);
                                     Renters.remove(renter);
+                                    if (!Renters.contains(renter)) {
+                                        System.out.println("Rentor has been removed");
+                                    }
                                 } else {
                                     System.out.println("The renter has not rented any car");
 
                                 }
+                                System.out.println("-------------------------------------");
                             }
                                 break;
                             case 6: {
-                                ;
+                                if (Renters.size() == 0) {
+                                    System.out.println("There is no active Renter available ");
+                                }
                                 for (int i = 0; i < Renters.size(); i++) {
+
                                     System.out.println("The rentor id is " + Renters.get(i).getRenter_id());
                                     System.out.println("The rentor name is " + Renters.get(i).getRenter_name());
 
                                     System.out.println("The rentor type is " + Renters.get(i).getrentertype());
-                                    System.out.println("The rented cars by the rentor are");
-                                    System.out
-                                            .println("size of compact cars" + Renters.get(i).RentedCompactCars.size());
-                                    System.out.println("size of SUV cars" + Renters.get(i).RentedSUVCars.size());
-                                    System.out.println("size of Luxury cars" + Renters.get(i).RentedLuxuryCars.size());
+                                    System.out.println("The rented cars by the renter are");
+
                                     for (int j = 0; j < Renters.get(i).RentedCompactCars.size(); j++) {
 
-                                        System.out.println(Renters.get(i).RentedCompactCars.get(j).getcar_type());
-                                        System.out.println(Renters.get(i).RentedCompactCars.get(j).getBrand());
-                                        System.out.println(Renters.get(i).RentedCompactCars.get(j).getPlateNumber());
-                                        System.out.println(Renters.get(i).RentedCompactCars.get(j).getRentalFee());
+                                        System.out.println(
+                                                "Car type is " + Renters.get(i).RentedCompactCars.get(j).getcar_type());
+                                        System.out.println(
+                                                "Car Brand is " + Renters.get(i).RentedCompactCars.get(j).getBrand());
+                                        System.out.println("Car plate number is "
+                                                + Renters.get(i).RentedCompactCars.get(j).getPlateNumber());
+                                        System.out.println("Car Rental Fee is "
+                                                + Renters.get(i).RentedCompactCars.get(j).getRentalFee());
                                     }
                                     for (int j = 0; j < Renters.get(i).RentedSUVCars.size(); j++) {
 
@@ -170,7 +189,7 @@ public class CRMS {
                                         System.out.println(Renters.get(i).RentedLuxuryCars.get(j).getPlateNumber());
                                         System.out.println(Renters.get(i).RentedLuxuryCars.get(j).getRentalFee());
                                     }
-
+                                    System.out.println("-------------------------------------");
                                 }
                                 break;
                             }
